@@ -1,0 +1,43 @@
+1: Вставьте скрипт таблицы Students ниже
+USE [TestDB2]
+GO
+
+/****** Object:  Table [dbo].[Students]    Script Date: 12/20/2024 5:44:31 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Students](
+	[StudentId] [int] NOT NULL,
+	[Registration Date] [datetime] NOT NULL,
+	[Student Name] [nvarchar](100) NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Students] ADD  CONSTRAINT [DF_Students_Registration Date]  DEFAULT (getdate()) FOR [Registration Date]
+GO
+
+
+2: Вставьте скрипт таблицы Enrollments ниже
+USE [TestDB2]
+GO
+
+/****** Object:  Table [dbo].[Enrollments]    Script Date: 12/20/2024 5:44:52 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Enrollments](
+	[EnrollmentID] [int] NOT NULL,
+	[EnrollmentDate] [datetime] NOT NULL,
+	[StudentId] [int] NOT NULL,
+	[CourseId] [int] NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Enrollments] ADD  CONSTRAINT [DF_Enrollments_EnrollmentDate]  DEFAULT (getdate()) FOR [EnrollmentDate]
+GO
