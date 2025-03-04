@@ -1,0 +1,84 @@
+USE [TestDB2]
+Go
+
+/********
+INSERT statement
+
+INSERT INTO[table] (columns)
+VALUES (values)
+
+*********/
+
+INSERT INTO [dbo].[Product] ([ProductId],[ProductName], [Price],[Description]) Values (1, 'Thing-a-ma-mob',39.99, Null);
+INSERT INTO [dbo].[Product] ([ProductId],[ProductName], [Price],[Description]) Values (2, 'Doo-Hickey',59.99, Null);
+GO
+
+INSERT [dbo].[Order] ([OrderId],[OrderDate],[Notes]) VALUES (1, '2015-12-01','Special order here!');
+INSERT [dbo].[Order] ([OrderId],[OrderDate]) VALUES (2, '2016-02-11');
+GO
+
+INSERT [dbo].[OrderDetail]([OrderDetailId],[OrderId],[ProductId],[Quantity]) VALUES (1, 1, 1, 2);
+INSERT [dbo].[OrderDetail]([OrderDetailId],[OrderId],[ProductId],[Quantity]) VALUES (2, 1, 2, 3);
+INSERT [dbo].[OrderDetail]([OrderDetailId],[OrderId],[ProductId],[Quantity]) VALUES (3, 2, 1, 10);
+
+/***
+SELECT [columns]
+FROM [table]
+JOIN [table]
+WHERE [condition]
+GROUP BY [columns]
+ORDER BY [columns]
+HAVING [conditions]
+*****/
+
+Select *FROM Product
+
+SELECT ProductName, Price
+FROM Product; 
+
+--sort the results by descending
+SELECT ProductName, Price
+FROM Product
+Order By DESC
+
+--Return Products with a price less than 50
+SELECT ProductName, Price
+FROM Product
+where price < 50
+
+--Join multiple tables together on the keys
+SELECT OrderId, ProductName, Price, Quantity, Price*Quantity as TotalCost
+FROM Product
+JOIN OrderDetail On Product.ProductId = OrderDetail.ProductId
+
+/****
+UPDATE Statements
+Update [table]
+set[column]=[value]
+where[conditions]
+****/
+
+Update OrderDetail
+Set Quantity = 5
+Where OrderDetailId = 1
+
+Update Product
+Set Description = 'Coming Soon!'
+where Description is null
+
+/***
+Delete statemens
+ basic syntax
+ delete from [Table]
+ Delete from [table]
+ where[conditions]
+ ****/
+
+ delete from OrderDetail
+ where OrderId = 1
+
+ delete from[Order]
+ where orderId = 1
+
+ Delete from Product
+ where ProductId = 1
