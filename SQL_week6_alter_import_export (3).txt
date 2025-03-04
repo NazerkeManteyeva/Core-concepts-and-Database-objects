@@ -1,0 +1,31 @@
+USE [TestDB2];
+GO
+
+CREATE TABLE [Employee](
+	[EmployeeId] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	[DeptId] NCHAR(3) NOT NULL,
+	[FirstName] NVARCHAR(50) NOT NULL, 
+	[LastName] NVARCHAR(50) NOT NULL,	 
+	[HireDate] DATETIME NOT NULL DEFAULT GETDATE(),
+	[Position] NVARCHAR(75) NOT NULL,
+	[Active] BIT NOT NULL DEFAULT 1
+);
+
+CREATE TABLE [EmployeeDetail](
+	[EmployeeId] INT NOT NULL PRIMARY KEY,
+	[PhoneNumber] NVARCHAR(10) NULL,
+	[MobileNumber] NVARCHAR(10) NULL,
+	[Address] NVARCHAR(100) NULL,
+	[City] NVARCHAR(50) NULL,
+	[State] NVARCHAR(50) NULL,
+	[Country] NVARCHAR(50) NULL,
+	[Email] NVARCHAR(50) NULL
+);
+
+CREATE TABLE [Department](
+	[DeptId] NCHAR(3) NOT NULL PRIMARY KEY,
+	[ManagerId] INT NOT NULL,
+	[Name] NVARCHAR(50) NOT NULL, 
+	[Description] NVARCHAR(MAX) NULL
+);
+
