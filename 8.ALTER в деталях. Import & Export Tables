@@ -1,0 +1,55 @@
+ALTER - команда DDL, которая используется для:
+
+Renaming a table (Переименование таблицы)
+Renaming a column (Переименование колонки)
+Changing a columns data type (Изменение типа данных в колонке)
+Removing a constraint (Убирать ограничения)
+Adding a constraint (Добавление ограничения)
+Adding a column (Добавление колонки)
+Removing a column (Изъятие колонки)
+Dropping a table (Удаление таблицы)
+
+По видео, делайте конспект и повторяйте все шаги
+
+Таймкоды:
+
+00:00  Создаем таблицы Employee, EmployeeDetail, Department в TestDB2
+01:50  DDL statement - ALTER
+02:30  Alter vs Update
+03:00  Практика ALTER - Добавляем два столбца в таблицу Employee
+04:29  Практика ALTER - Добавляем foreign key в таблицу Employee
+05:40  Создаем database diagram для TestDB2
+07:55  Практика ALTER - убираем ограничение Foreign Key для загрузки данных в таблицу
+09:37  SET Identity_insert ON/OFF
+12:25  Table properties - Storage
+13:52  Экспортируем данные как xlsx
+17:43  Сайт, генерирующий данные для таблиц mockaroo.com
+19:00  Импортируем данные из файла
+
+1: Вставьте ваш код ниже
+USE [TestDB2]
+Go
+
+--Modify table add more columns
+Alter Table [Employee] ADD
+   CreateDate DATETIME NULL DEFAULT GETDATE(),
+   ModifiedDate DATETIME NULL;
+
+ --Modify table and fk constr
+Alter Table [Employee] ADD
+     CONSTRAINT [FK_Employee_Department]
+	 FOREIGN kEY([DeptId]) REFERENCES[Department]([DeptId]);
+GO
+
+Alter Table [Employee] ADD
+     CONSTRAINT [FK_Employee_EmployeeDetail]
+	 FOREIGN kEY([EmployeeId]) REFERENCES[EmployeeDetail]([EmployeeId]);
+GO
+2: Объясните своими словами, что это за типы данных: BIT, NCHAR(3), NVARCHAR(MAX)?
+BIT — хранит логические значения: 0, 1 или NULL.
+
+NCHAR(3) — строка фиксированной длины (3 символа), поддерживает Unicode (например, кириллицу).
+
+NVARCHAR(MAX) — строка переменной длины, поддерживает Unicode и может содержать до 2 миллиардов символов.
+3: Прикрепите выгруженный вами Excel файл с базой данных TestDB2
+TestDB2.xlsx  (54.7 KB)
